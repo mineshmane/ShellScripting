@@ -1,0 +1,23 @@
+#!/bin/bash -x 
+
+emp=1
+isPartime=2
+isPresent=$((RANDOM %3))
+if [ $isPresent -eq $emp ]
+then 
+echo emplyw present
+	salary=4000
+	worktime=8
+	total=$(( $salary * $worktime ))
+echo " total "$total
+else if [ $isPartime -eq  $isPresent ]
+	then
+	salry=400
+	hrs=4
+	total=$(($salry * $hrs ))
+	echo "total salry " $total
+
+else 
+salary=0
+echo employe not present salary $salary 
+fi
