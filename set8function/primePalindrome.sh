@@ -11,8 +11,10 @@ function checkPalindrome(){
 		if [ $old == $test ]
 			then
 				echo palindrome
+				return 1
 			else
-			echo not palindrome
+				echo not palindrome
+				return 0
 			fi
 	}
 function checkPrime(){
@@ -26,9 +28,18 @@ function checkPrime(){
 		done
 	if (( $flag == 0 ))
 	then 
-	echo number is prime
+		return 1
 	else
-	echo number is not prime
+		return 0
 	fi
-
 }
+	read -p " Enter number :" number
+	prime=$( checkPrime $number )
+	palindrome=$( checkPalindrome $number)
+		echo $prime $palindrome
+	if ((	$prime -eq $palindrome ))
+	then
+		echo "number is prime and palindrome" 
+	else
+		echo "number is not prime Palindrome"
+	fi
