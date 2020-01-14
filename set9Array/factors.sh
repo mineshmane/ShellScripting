@@ -1,22 +1,18 @@
-#!/bin/bash -x 
+#!/bin/bash  
 read -p "Enter Number : " number
-	num=$(echo "sqrt($number)"|bc)
-	echo num
-	echo $number
-	while [ $number%2 == 0 ]
-		do
-			echo 2 " "
-			number=$number/2
-		done
-	for(( i=3; i*i<=$number; i=$((i+2)) ))
+		num=$number
+	for(( i=3; i<$number; i++ ))
 		do
 			while [ $(($number%$i)) == 0 ]
 				do
-					echo "primefactors " $i
+					#echo "primefactors " $i
+					prime[$i]=$i
 					number=$(($number/$i))
 				done
-		done
+	done
 		if [ $number > 2 ]
-			then
-			echo $number
+		then
+			prime[$i]=$number
 		fi
+
+	echo $num "s primeFactors are " ${prime[@]}
