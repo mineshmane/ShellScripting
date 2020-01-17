@@ -1,0 +1,13 @@
+#!/bin/bash -x
+declare -A  dix
+dix[1]=0
+dix[2]=0
+dix[3]=0
+dix[4]=0
+dix[5]=0
+dix[6]=0
+
+while [ ${dix[$i]} < 11 ]
+	do
+		counter=$(( RANDOM%6+1))
+		echo $counter
