@@ -1,40 +1,58 @@
 #!/bin/bash 
-declare -A dix
-dix[1]=0
-dix[2]=0
-dix[3]=0
-dix[4]=0
-dix[5]=0
-dix[6]=0
-echo "${#dix[@]}"
-counter=0
-i=0
+declare -A Dice
+counterOne=0
+counterTwo=0
+counterTheree=0
+counterFour=0
+counterFive=0
+counterSix=0
 
-echo "data1" ${dix[$i]}
-
-while [[ ${dix[$i]} -lt 10 ]]
-echo "data " ${dix[@i]}
-do	
-	i=`expr $i + 1` 	
-	count=$((RANDOM%6+1))
-echo $count
-	if [ $count -eq 1 ]
-	then
-	dix[1]=$(( $counter+1 ))
-	elif [  $count -eq 2 ]
-	then
-		dix[2]=$(( $counter+1 ))
-	elif [ $count -eq 3 ]
-	then
-		dix[3]=$(( $counter+1 ))
-	elif [ $count -eq 4 ]
-	then
-		dix[4]=$(( $counter+1 ))
-	elif [ $count -eq 5 ]
-		then
-		dix[5]=$(( $counter+1 ))
-	else 
-		dix[6]=$(( $counter+1 ))
-	fi
+while [[ $counterOne -lt 10 && $counterTwo -lt 10 && $counterThree -lt 10 && $counterFour -lt 10 &&  $counterFive -lt 10 && $counterSix -lt 10 ]]
+do
+die=$((RANDOM%6+1))
+if [ $die -gt 0 ]
+then
+if [ $die -eq 1 ]
+then
+((counterOne++))
+elif [ $die -eq 2 ]
+then
+      ((counterTwo++))
+elif [ $die -eq 3 ]
+then
+((counterThree++))
+elif [ $die -eq 4 ]
+  then
+((counterFour++))
+elif [ $die -eq 5 ]
+  then
+((counterFive++))
+else
+      ((counterSix++))
+fi
+fi
 done
-	echo "${dix[@]}"
+
+Dice[D1]=$counterOne
+Dice[D2]=$counterTwo
+Dice[D3]=$counterThree
+Dice[D4]=$counterFour
+Dice[D5]=$counterFive
+Dice[D6]=$counterSix
+
+for d in ${!Dice[@]}
+do
+  echo "$d : ${Dice[$d]}"
+done | sort -k1 -n
+
+echo "Minimum Time:- "
+for d in ${!Dice[@]}
+do
+  echo "$d : ${Dice[$d]}"
+done | sort -k3 -n | head -1
+
+echo "Maximum Time:- "
+for d in ${!Dice[@]}
+do
+  echo "$d : ${Dice[$d]}"
+done | sort -k3 -n | tail -1
